@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alamada`s Sign Up Form</title>
+  <style>
+
+	*{
+		font-family:Arial, Helvetica, sans-serif;
+		}
+	body{
+		background-color:#F6D2E0;
+	}
+	fieldset{
+		border-radius:30px;
+		background-color:#67A3D9;
+		margin-right:30%;
+		margin-left:30%;
+		}
+	input{
+		width:100%;
+		}
+	legend{
+		font-size: 40px;
+		background-color:pink;
+		border: 1px solid black;
+		border-radius:20px;
+		}
+	legend:hover{
+		background-color:black;
+		color:pink;
+		transition: color 0.5s;
+		transition: background-color 0.5s;
+		}
+	label{
+		font-size:20px;
+		}
+	input, select, option{
+		font-size:15px;
+		height:30px;
+		width:100%;
+		border-radius:20px;
+		}
+	input:hover{
+		}
+	textarea{
+		height:40px;
+		width:100%;
+		}
+	
+	#output{
+		border-radius:30px;
+		border: 1px solid black;
+		margin-left:30%;
+		margin-right:30%;
+		margin-top: 30px;
+		margin-top: 10px;
+		background-color:#67A3D9;
+		text-align: center;
+		}
+
+
+    .error {
+		border: 2px solid red;
+    }
+
+    .success {
+		border: 2px solid green;
+    }
+	input[type="submit"], 	input[type="reset"]{
+		height:30px;
+		background-color:pink;
+		border: 1 px solid pink;
+		margin-bottom:5px;
+		}
+	input[type="submit"]:hover, 	input[type="reset"]:hover{
+		background-color:black;
+		color:pink;
+		transition: color 0.5s;
+		transition: background-color 0.5s;
+		
+	}
+	#out{
+		font-weight:700;
+		margin-bottom:10px;
+	}
+		
+  </style>
+</head>
+<body>
+	<form id="form">
+    <fieldset>
+      <legend>Sign-Up</legend>
+
+      <div class="input">
+		<label for="name">Name:</label><br>
+		<input type="text" id="name" onblur="checkInput(this)" onfocus="validate(this)" required>
+      </div>
+
+      <div class="input">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" onblur="checkInput(this)" onfocus="validate(this)" required>
+      </div>
+
+      <div class="input">
+        <label for="gender">Gender:</label><br>
+        <select id="gender" onblur="checkInput(this)" onfocus="validate(this)" required>
+			<option value="male">Male</option>
+			<option value="female">Female</option>
+			<option value="prefer-not-to-mention">Prefer Not to Mention</option>
+        </select>
+      </div>
+
+      <div class="input">
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" onblur="checkInput(this)" onfocus="validate(this)" required>
+      </div>
+
+      <div class="input">
+        <label for="email">Email:</label><br>
+		<input type="email" id="email" onblur="checkInput(this)" onfocus="validate(this)" required>
+      </div>
+
+      <div class="input">
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" onblur="checkInput(this)" onfocus="validate(this)" required>
+      </div>
+
+      <div class="input">
+        <label for="likes">Likes:</label><br>
+        <textarea id="likes" rows="4" onblur="checkInput(this)" onfocus="validate(this)" required></textarea>
+      </div>
+
+      <div class="input"><br>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset" onclick="reset()">
+      </div>
+    </fieldset>
+  </form>
+
+  <fieldset id="output"></fieldset>
+
+  <script>
+    function checkInput(element) {
+      if (element.value === '') {
+        element.classList.add('error');
+      } else { element.classList.remove('error');
+        element.classList.add('success');
+      }
+    }
+
+    function validate(element) {
+      element.classList.remove('error');
+      element.classList.remove('success');
+    }
+
+    function reset() {
+      document.getElementById('form').reset();
+      document.getElementById('output').innerHTML = '';
+    }
+
+    document.getElementById('form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      var name = document.getElementById('name').value;
+      var username = document.getElementById('username').value;
+      var gender = document.getElementById('gender').value;
+      var password = document.getElementById('password').value;
+      var email = document.getElementById('email').value;
+      var address = document.getElementById('address').value;
+      var likes = document.getElementById('likes').value;
+	  var output = document.getElementById('output');
+      output.innerHTML = '<legend>Information:</legend>';
+      output.innerHTML += '<div><span id="out">Name:</span> ' + name + '</div>';
+      output.innerHTML += '<div><span id="out">Username:</span> ' + username + '</div>';
+      output.innerHTML += '<div><span id="out">Gender:</span> ' + gender + '</div>';
+      output.innerHTML += '<div><span id="out">Password:</span> ' + password + '</div>'; 
+	  output.innerHTML += '<div><span id="out">Email:</span> ' + email + '</div>';
+      output.innerHTML += '<div><span id="out">Address:</span> ' + address + '</div>';
+      output.innerHTML += '<div><span  id="out">Likes:</span>' + likes + '</div>';
+    });
+  </script>
+</body>
+</html>
